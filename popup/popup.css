@@ -1,0 +1,132 @@
+:root {
+  color-scheme: dark;
+  --bg: #0e0f13;
+  --panel: #17181d;
+  --line: rgba(255, 255, 255, 0.07);
+  --text: #f2f3f5;
+  --muted: #8b8e98;
+  --spring: cubic-bezier(0.34, 1.42, 0.64, 1);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  width: 340px;
+  margin: 0;
+  padding: 14px;
+  background: var(--bg);
+  color: var(--text);
+  font: 13px/1.35 system-ui, -apple-system, "Segoe UI Variable Text", "Segoe UI", Roboto, sans-serif;
+}
+
+header { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+h1 { font-size: 14px; font-weight: 700; margin: 0; letter-spacing: -0.01em; }
+h2 { font-size: 12px; font-weight: 650; margin: 16px 0 8px; color: var(--muted);
+     text-transform: uppercase; letter-spacing: 0.06em; }
+h2 small { text-transform: none; letter-spacing: 0; font-weight: 450; opacity: 0.7; margin-left: 4px; }
+
+/* Current page card, themed with the app's palette. */
+.card {
+  --c-bg: #1b1c22; --c-bg2: #22242b; --c-fg: var(--text); --c-accent: #8b8e98; --c-accent-fg: #000;
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 4px 12px;
+  align-items: center;
+  padding: 14px;
+  border-radius: 18px;
+  color: var(--c-fg);
+  background:
+    radial-gradient(120% 140% at 0% 0%, color-mix(in srgb, var(--c-accent) 24%, transparent), transparent 60%),
+    linear-gradient(135deg, var(--c-bg), var(--c-bg2));
+  box-shadow: inset 0 0 0 1px var(--line), 0 10px 30px -12px color-mix(in srgb, var(--c-accent) 50%, transparent);
+  animation: pop 0.5s var(--spring) both;
+}
+@keyframes pop { from { transform: scale(0.94); opacity: 0; } }
+
+.card .logo { width: 40px; height: 40px; fill: var(--c-accent);
+              filter: drop-shadow(0 0 10px color-mix(in srgb, var(--c-accent) 55%, transparent)); }
+.card.neutral .logo { opacity: 0.35; }
+.meta { min-width: 0; }
+.name { font-size: 15px; font-weight: 700; }
+.link { font: 11px/1.3 ui-monospace, "Cascadia Code", Consolas, monospace; opacity: 0.6;
+        white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px; }
+
+#open {
+  grid-column: 1 / -1;
+  margin-top: 10px;
+  height: 38px;
+  border: 0;
+  border-radius: 999px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  background: var(--c-accent);
+  color: var(--c-accent-fg);
+  transition: transform 0.25s var(--spring), filter 0.2s;
+}
+#open:hover { filter: brightness(1.1); transform: scale(1.02); }
+#open:active { transform: scale(0.97); }
+#open:disabled { opacity: 0.6; cursor: default; }
+
+.row {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  margin-top: 12px; padding: 10px 12px; border-radius: 14px;
+  background: var(--panel); box-shadow: inset 0 0 0 1px var(--line); cursor: pointer;
+}
+.row strong { display: block; font-weight: 600; }
+.row small { color: var(--muted); }
+
+.switch {
+  appearance: none; flex: none; position: relative; cursor: pointer;
+  width: 36px; height: 22px; margin: 0; border-radius: 999px;
+  background: #3a3c44; transition: background 0.2s;
+}
+.switch::after {
+  content: ""; position: absolute; top: 3px; left: 3px;
+  width: 16px; height: 16px; border-radius: 50%; background: #fff;
+  transition: transform 0.35s var(--spring);
+}
+.switch:checked { background: #1ed760; }
+.switch:checked::after { transform: translateX(14px); }
+
+.apps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.apps button {
+  width: 100%; display: flex; flex-direction: column; align-items: center; gap: 5px;
+  padding: 9px 4px 7px; border: 0; border-radius: 12px; cursor: pointer;
+  font: 10.5px/1.1 inherit; color: var(--text);
+  background: var(--panel); box-shadow: inset 0 0 0 1px var(--line);
+  transition: transform 0.25s var(--spring), opacity 0.2s, background 0.2s;
+}
+.apps button:hover { transform: translateY(-2px); background: #1e1f25; }
+.apps svg { width: 20px; height: 20px; transition: filter 0.2s; }
+.apps span { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.apps button[aria-pressed="false"] { opacity: 0.38; }
+.apps button[aria-pressed="false"] svg { filter: grayscale(1); }
+
+footer { margin-top: 14px; color: var(--muted); font-size: 11.5px; text-align: center; }
+kbd {
+  font: 10.5px ui-monospace, Consolas, monospace; padding: 1px 5px; border-radius: 5px;
+  background: var(--panel); box-shadow: inset 0 -1px 0 var(--line), inset 0 0 0 1px var(--line);
+}
+
+/* Site-access banner (MV3 host permissions are revocable in Firefox). */
+.grant {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 12px; padding: 12px; border-radius: 14px;
+  background: linear-gradient(135deg, #3a2a0a, #2a1f08);
+  box-shadow: inset 0 0 0 1px rgba(255, 196, 0, 0.25);
+  animation: pop 0.5s var(--spring) both;
+}
+.grant[hidden] { display: none; }
+.grant strong { display: block; color: #ffd166; }
+.grant small { color: #d9c9a3; }
+.grant button {
+  flex: none; height: 32px; padding: 0 16px; border: 0; border-radius: 999px;
+  font: inherit; font-weight: 700; cursor: pointer; background: #ffd166; color: #2a1f08;
+  transition: transform 0.25s var(--spring), filter 0.2s;
+}
+.grant button:hover { filter: brightness(1.08); transform: scale(1.04); }
+
+/* Opened as a tab after install. */
+body.page { margin: 48px auto; border-radius: 20px; box-shadow: 0 0 0 1px var(--line); }
+html:has(body.page) { background: var(--bg); }

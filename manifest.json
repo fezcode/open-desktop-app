@@ -1,0 +1,103 @@
+{
+  "manifest_version": 3,
+  "name": "Open Desktop App",
+  "version": "0.1.0",
+  "description": "Open Spotify, Steam, Discord, Slack, Zoom, Teams and more in their desktop apps, with a dynamic-island style prompt.",
+  "permissions": ["storage", "contextMenus", "activeTab", "scripting"],
+  "host_permissions": [
+    "*://open.spotify.com/*",
+    "*://store.steampowered.com/*",
+    "*://steamcommunity.com/*",
+    "*://help.steampowered.com/*",
+    "*://discord.com/*",
+    "*://ptb.discord.com/*",
+    "*://canary.discord.com/*",
+    "*://discord.gg/*",
+    "*://*.slack.com/*",
+    "*://*.zoom.us/*",
+    "*://teams.microsoft.com/*",
+    "*://teams.live.com/*",
+    "*://teams.cloud.microsoft/*",
+    "*://figma.com/*",
+    "*://www.figma.com/*",
+    "*://notion.so/*",
+    "*://www.notion.so/*",
+    "*://*.notion.site/*",
+    "*://t.me/*",
+    "*://telegram.me/*",
+    "*://web.telegram.org/*",
+    "*://web.whatsapp.com/*",
+    "*://wa.me/*",
+    "*://api.whatsapp.com/*",
+    "*://store.epicgames.com/*",
+    "*://linear.app/*"
+  ],
+  "background": {
+    "scripts": ["apps.js", "background.js"]
+  },
+  "action": {
+    "default_title": "Open Desktop App",
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "commands": {
+    "open-desktop-app": {
+      "suggested_key": { "default": "Alt+Shift+O" },
+      "description": "Open the current page in its desktop app"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://open.spotify.com/*",
+        "*://store.steampowered.com/*",
+        "*://steamcommunity.com/*",
+        "*://help.steampowered.com/*",
+        "*://discord.com/*",
+        "*://ptb.discord.com/*",
+        "*://canary.discord.com/*",
+        "*://discord.gg/*",
+        "*://*.slack.com/*",
+        "*://*.zoom.us/*",
+        "*://teams.microsoft.com/*",
+        "*://teams.live.com/*",
+        "*://teams.cloud.microsoft/*",
+        "*://figma.com/*",
+        "*://www.figma.com/*",
+        "*://notion.so/*",
+        "*://www.notion.so/*",
+        "*://*.notion.site/*",
+        "*://t.me/*",
+        "*://telegram.me/*",
+        "*://web.telegram.org/*",
+        "*://web.whatsapp.com/*",
+        "*://wa.me/*",
+        "*://api.whatsapp.com/*",
+        "*://store.epicgames.com/*",
+        "*://linear.app/*"
+      ],
+      "js": ["icons.js", "apps.js", "content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "open-desktop-app@workhammer.local",
+      "strict_min_version": "142.0",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    }
+  }
+}

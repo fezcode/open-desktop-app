@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header>
+      <img src="../icons/icon-32.png" alt="" width="20" height="20" />
+      <h1>Open Desktop App</h1>
+    </header>
+
+    <section id="grant" class="grant" hidden>
+      <div>
+        <strong>Site access needed</strong>
+        <small>Firefox hasn't allowed the island to run on Spotify, Steam and the other supported sites yet.</small>
+      </div>
+      <button id="grantBtn" type="button">Allow</button>
+    </section>
+
+    <section id="current" class="card neutral">
+      <svg class="logo" viewBox="0 0 24 24" aria-hidden="true"><path id="current-logo" /></svg>
+      <div class="meta">
+        <div id="current-name" class="name">Checking this page…</div>
+        <div id="current-link" class="link"></div>
+      </div>
+      <button id="open" type="button" hidden>Open Desktop App</button>
+    </section>
+
+    <label class="row">
+      <span>
+        <strong>Show the island automatically</strong>
+        <small>Offer the desktop app when a supported site loads</small>
+      </span>
+      <input id="autoShow" type="checkbox" class="switch" />
+    </label>
+
+    <h2>Apps <small>click to mute the island for one</small></h2>
+    <ul id="apps" class="apps"></ul>
+
+    <footer>
+      <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>O</kbd> or right-click → <em>Open Desktop App</em>
+    </footer>
+
+    <script src="../icons.js"></script>
+    <script src="../apps.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>
