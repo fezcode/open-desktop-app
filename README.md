@@ -76,7 +76,7 @@ on the supported sites listed above. The only things stored (in
 
 ```powershell
 npx web-ext lint
-npx web-ext build --overwrite-dest --ignore-files "screenshots/**" "*.stackdump"
+npx web-ext build --overwrite-dest --ignore-files screenshots "screenshots/**" "*.stackdump"
 ```
 
 Then upload `web-ext-artifacts/open_desktop_app-<version>.zip` to
