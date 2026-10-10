@@ -4,6 +4,8 @@ A Firefox WebExtension that offers to open the current website in its desktop
 app (Spotify, Steam, Discord, …) through a dynamic-island style prompt that
 takes on each app's own colors.
 
+![The island on a Spotify track page](screenshots/spotify.png)
+
 ## How it works
 
 On a supported site, a small pill drops in at the top of the page and expands
@@ -74,7 +76,7 @@ on the supported sites listed above. The only things stored (in
 
 ```powershell
 npx web-ext lint
-npx web-ext build --overwrite-dest --ignore-files "*.stackdump"
+npx web-ext build --overwrite-dest --ignore-files "screenshots/**" "*.stackdump"
 ```
 
 Then upload `web-ext-artifacts/open_desktop_app-<version>.zip` to
